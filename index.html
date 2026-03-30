@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI業務改革パートナー｜AI×業務効率化の伴走支援</title>
+  <meta name="description" content="AI×業務効率化で、御社の"回っていない"を仕組みに変える。戦略×実装×運用定着まで、手を動かして完遂します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          },
+          colors: {
+            primary: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e3a5f',900:'#0f1d35' },
+            accent: '#f97316',
+            surface: '#f8fafc',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    
+    /* Scroll animations */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* Hero gradient */
+    .hero-bg {
+      background: linear-gradient(135deg, #0f1d35 0%, #1e3a5f 40%, #2563eb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%);
+      animation: hero-glow 8s ease-in-out infinite alternate;
+    }
+    @keyframes hero-glow {
+      0% { transform: translate(0,0) scale(1); }
+      100% { transform: translate(-5%,5%) scale(1.1); }
+    }
+
+    /* Floating grid lines on hero */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* CTA button pulse */
+    .cta-pulse { animation: pulse-ring 2.5s ease-out infinite; }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(249,115,22,0); }
+      100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+    }
+
+    /* Number counter animation */
+    .stat-number { font-variant-numeric: tabular-nums; }
+
+    /* Card hover */
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+
+    /* Pricing card featured */
+    .pricing-featured {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      position: relative;
+    }
+    .pricing-featured::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, #60a5fa, #f97316, #60a5fa);
+      border-radius: 1.1rem;
+      z-index: -1;
+    }
+
+    /* Section dividers */
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+      border: none;
+      opacity: 0.3;
+    }
+
+    /* Pain card icon bg */
+    .pain-icon-bg {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #fee2e2, #fef3c7);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+
+    /* Step connector */
+    .step-connector {
+      position: absolute;
+      left: 28px;
+      top: 56px;
+      bottom: -24px;
+      width: 2px;
+      background: linear-gradient(to bottom, #3b82f6, #bfdbfe);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-lg font-bold text-white tracking-tight">
+        <span class="text-blue-300">AI</span>業務改革パートナー
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm text-white/70">
+        <a href="#evidence" class="hover:text-white transition-colors">導入事例</a>
+        <a href="#evidence" class="hover:text-white transition-colors">デモ</a>
+        <a href="#cta" class="bg-accent text-white font-semibold px-5 py-2.5 rounded-full hover:bg-orange-600 transition-colors">無料トライアルに申し込む</a>
+      </nav>
+      <button class="sm:hidden text-white" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-nav" class="hidden sm:hidden px-6 pb-4 space-y-2">
+      <a href="#evidence" class="block text-white/70 hover:text-white py-2">導入事例</a>
+      <a href="#evidence" class="block text-white/70 hover:text-white py-2">デモ</a>
+      <a href="#cta" class="block text-white/70 hover:text-white py-2">お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- ========== SECTION 1: HERO ========== -->
+  <section class="hero-bg min-h-screen flex items-center relative">
+    <div class="hero-grid"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-32 md:py-40">
+      <div class="max-w-3xl">
+        <p class="text-blue-300 text-sm font-semibold tracking-widest uppercase mb-6 reveal">AI × 業務効率化</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 reveal reveal-delay-1">
+          便利ツール屋ではない。<br>
+          <span class="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">AIでPLを伸ばす</span><br>
+          伴走パートナー。
+        </h1>
+        <p class="text-blue-100/80 text-lg md:text-xl leading-relaxed mb-10 reveal reveal-delay-2">
+          組織崩壊の経験から、AIで年間6,000時間の工数削減を実現。<br class="hidden md:block">
+          戦略 × 実装 × 運用定着まで、手を動かして完遂します。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 reveal reveal-delay-3">
+          <a href="https://tally.so/r/QKdxx1" target="_blank" rel="noopener" class="cta-pulse inline-flex items-center justify-center gap-2 bg-accent hover:bg-orange-600 text-white font-bold text-lg px-8 py-4 rounded-full transition-colors">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            無料トライアルに申し込む
+          </a>
+          <a href="#service" class="inline-flex items-center justify-center gap-2 border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded-full transition-colors">
+            サービス内容を見る
+          </a>
+        </div>
+      </div>
+      <!-- Stats bar -->
+      <div class="mt-16 grid grid-cols-3 gap-6 max-w-lg reveal reveal-delay-4">
+        <div class="text-center">
+          <p class="stat-number text-3xl md:text-4xl font-extrabold text-white">6,000<span class="text-lg text-blue-300">h</span></p>
+          <p class="text-xs text-blue-200/60 mt-1">年間工数削減</p>
+        </div>
+        <div class="text-center">
+          <p class="stat-number text-3xl md:text-4xl font-extrabold text-white">111<span class="text-lg text-blue-300">%</span></p>
+          <p class="text-xs text-blue-200/60 mt-1">売上達成率</p>
+        </div>
+        <div class="text-center">
+          <p class="stat-number text-3xl md:text-4xl font-extrabold text-white">40<span class="text-lg text-blue-300">名+</span></p>
+          <p class="text-xs text-blue-200/60 mt-1">組織で実践済</p>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-blue-200/40">
+      <span class="text-xs tracking-widest">SCROLL</span>
+      <div class="w-px h-8 bg-gradient-to-b from-blue-200/40 to-transparent animate-bounce"></div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: PAIN ========== -->
+  <section class="py-24 md:py-32 bg-white" id="pain">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-accent tracking-widest uppercase mb-3 reveal">Common Challenges</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">このような課題はありませんか？</h2>
+        <p class="text-gray-500 mt-4 max-w-2xl mx-auto reveal reveal-delay-2">AI導入や業務効率化PJでは、3つの「ない」が発生しがちです</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Pain 1 -->
+        <div class="bg-surface rounded-2xl p-8 card-hover reveal reveal-delay-1">
+          <div class="pain-icon-bg mb-6">📊</div>
+          <h3 class="text-xl font-bold mb-3">投資対効果が見えない</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">成果の不確実性が高く、一歩踏み出せない。</p>
+          <p class="text-sm text-gray-400 italic border-l-2 border-orange-200 pl-4">「もし成果が出なければ、現場の負担が増えるだけになりそう…」</p>
+        </div>
+        <!-- Pain 2 -->
+        <div class="bg-surface rounded-2xl p-8 card-hover reveal reveal-delay-2">
+          <div class="pain-icon-bg mb-6">⏰</div>
+          <h3 class="text-xl font-bold mb-3">社内のリソースが足りない</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">通常業務に追われ、改善に人手も時間も割けない。</p>
+          <p class="text-sm text-gray-400 italic border-l-2 border-orange-200 pl-4">「通常業務で手一杯。サイドPJだとコミットメントが上がりません…」</p>
+        </div>
+        <!-- Pain 3 -->
+        <div class="bg-surface rounded-2xl p-8 card-hover reveal reveal-delay-3">
+          <div class="pain-icon-bg mb-6">🔄</div>
+          <h3 class="text-xl font-bold mb-3">導入後に定着しない</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">定着と育成の進め方が分からず、「導入しただけ」に終わる。</p>
+          <p class="text-sm text-gray-400 italic border-l-2 border-orange-200 pl-4">「どの業務にどう組み込めばいいか具体的にイメージが沸かない…」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: AGITATION ========== -->
+  <section class="py-24 md:py-32 bg-primary-900 text-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-blue-300 tracking-widest uppercase mb-3 reveal">Root Cause</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">なぜ社内だけでは解決できないのか</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 reveal reveal-delay-1">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl mb-5">👁️</div>
+          <h3 class="text-lg font-bold mb-3">客観的視点の欠如</h3>
+          <p class="text-blue-100/60 leading-relaxed">自社業務に慣れすぎて非効率を客観視できない。改善ポイントが見えない。</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 reveal reveal-delay-2">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl mb-5">🧑‍💻</div>
+          <h3 class="text-lg font-bold mb-3">専門人材がいない</h3>
+          <p class="text-blue-100/60 leading-relaxed">設計→実装→定着を一気通貫で推進できる人材が社内に不足。</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 reveal reveal-delay-3">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl mb-5">⏳</div>
+          <h3 class="text-lg font-bold mb-3">時間・リソース不足</h3>
+          <p class="text-blue-100/60 leading-relaxed">日々の緊急業務に追われ、重要だが緊急でない改善に着手できない。</p>
+        </div>
+      </div>
+      <!-- Existing services limitation -->
+      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto reveal">
+        <h3 class="text-xl font-bold mb-6 text-center">既存サービスの限界</h3>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <span class="text-red-400 text-lg mt-0.5">✕</span>
+            <p class="text-blue-100/70">多くのコンサルは「戦略まで」、SIerは「ツール導入まで」で止まる</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="text-red-400 text-lg mt-0.5">✕</span>
+            <p class="text-blue-100/70">便利機能はリリースできても、PLに影響する本質的な改善に至らない</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="text-red-400 text-lg mt-0.5">✕</span>
+            <p class="text-blue-100/70">高額システム導入を前提とされ、中小企業には現実的でない</p>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-white/10 text-center">
+          <p class="text-blue-200 font-semibold">だからこそ<span class="text-white">「現場経験 × 実装力 × 運用定着まで伴走」</span>する外部専門家が必要。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: WHY US ========== -->
+  <section class="py-24 md:py-32 bg-white" id="about">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-accent tracking-widest uppercase mb-3 reveal">Why Us</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">コンサルでも、SIerでもない。<br class="hidden md:block">「事業数値」を動かす伴走型パートナー。</h2>
+        <p class="text-gray-500 mt-4 max-w-2xl mx-auto reveal reveal-delay-2">45名組織のマネジメント経験から、どこに手を打てば利益や組織が変わるかを熟知。<br>戦略だけで終わらず、実装・運用定着まで自ら手を動かして完遂します。</p>
+      </div>
+      <!-- 3 Strengths -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center reveal reveal-delay-1">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-2xl mx-auto mb-5">🎯</div>
+          <h3 class="text-lg font-bold mb-3">「PLにヒットする」設計力</h3>
+          <p class="text-gray-500 leading-relaxed">「便利」ではなく利益に直結する改善を設計。アップセル増・解約減・工数削減など、経営指標を動かすポイントを特定。</p>
+        </div>
+        <div class="text-center reveal reveal-delay-2">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-2xl mx-auto mb-5">⚡</div>
+          <h3 class="text-lg font-bold mb-3">戦略×実装×定着を完遂</h3>
+          <p class="text-gray-500 leading-relaxed">GAS・Notion・Gemini等を駆使し、現場で使える形に高速実装。「動くけど使えない」で終わらせない。</p>
+        </div>
+        <div class="text-center reveal reveal-delay-3">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-2xl mx-auto mb-5">💰</div>
+          <h3 class="text-lg font-bold mb-3">高額システム不要</h3>
+          <p class="text-gray-500 leading-relaxed">既存ツールを最大活用し、最小コストで検証。ROIが明確になってから段階的に投資する現実的なアプローチ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5: SERVICE ========== -->
+  <section class="py-24 md:py-32 bg-surface" id="service">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-accent tracking-widest uppercase mb-3 reveal">Services</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">ご支援可能内容</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service cards -->
+        <div class="bg-white rounded-2xl p-7 card-hover reveal reveal-delay-1 border border-gray-100">
+          <div class="text-3xl mb-4">📈</div>
+          <h3 class="font-bold text-lg mb-2">KPI可視化 & ダッシュボード</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">重要指標の整理・定義、スプシやダッシュボードでの一元管理、日次・月次の自動更新の仕組み化。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 card-hover reveal reveal-delay-2 border border-gray-100">
+          <div class="text-3xl mb-4">🗓️</div>
+          <h3 class="font-bold text-lg mb-2">会議の運用改善・自動化</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">アジェンダのフォーマット化、議事録作成・共有の自動化、決めたことが守られる仕組み構築。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 card-hover reveal reveal-delay-3 border border-gray-100">
+          <div class="text-3xl mb-4">📚</div>
+          <h3 class="font-bold text-lg mb-2">ナレッジ共有基盤の整備</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Notion等を活用した資産集約、属人性の排除と事例蓄積、新人の学習コスト大幅削減。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 card-hover reveal reveal-delay-1 border border-gray-100">
+          <div class="text-3xl mb-4">🤖</div>
+          <h3 class="font-bold text-lg mb-2">自動化・効率化の導入</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">GAS/Slack連携の自動化、Gemini等のAIツール活用、通知・集計の自動仕組み化。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 card-hover reveal reveal-delay-2 border border-gray-100">
+          <div class="text-3xl mb-4">🎯</div>
+          <h3 class="font-bold text-lg mb-2">タスク・PJ管理の最適化</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">管理ツールの整理・統合、現場への定着・伴走支援、Notion等への一元管理移行。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 card-hover reveal reveal-delay-3 border border-gray-100">
+          <div class="text-3xl mb-4">🎓</div>
+          <h3 class="font-bold text-lg mb-2">AI導入研修 / 定着の伴走</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">社内研修・教育の実施、新しい業務プロセスの導入支援、トレーニング計画の実行。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 6: EVIDENCE ========== -->
+  <section class="py-24 md:py-32 bg-white" id="evidence">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-accent tracking-widest uppercase mb-3 reveal">Results</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">導入実績：AIによる業務変革の効果</h2>
+      </div>
+      <!-- Impact numbers -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="text-center bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8 reveal reveal-delay-1 border border-blue-100">
+          <p class="stat-number text-5xl font-extrabold text-primary-700 mb-2">240<span class="text-2xl">万円</span></p>
+          <p class="text-sm font-semibold text-primary-600 mb-1">人件費削減（集計業務）/年</p>
+          <p class="text-xs text-gray-500">年間960時間の工数削減。GASとAIで毎月の集計・事務作業を大幅に効率化。</p>
+        </div>
+        <div class="text-center bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8 reveal reveal-delay-2 border border-blue-100">
+          <p class="stat-number text-5xl font-extrabold text-primary-700 mb-2">100<span class="text-2xl">%</span></p>
+          <p class="text-sm font-semibold text-primary-600 mb-1">議事録作成工数削減</p>
+          <p class="text-xs text-gray-500">会議議事録の自動生成により、「作成工数」を完全にゼロへ。</p>
+        </div>
+        <div class="text-center bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8 reveal reveal-delay-3 border border-blue-100">
+          <p class="stat-number text-5xl font-extrabold text-primary-700 mb-2">1,500<span class="text-2xl">万円</span></p>
+          <p class="text-sm font-semibold text-primary-600 mb-1">人件費削減（資料作成）/年</p>
+          <p class="text-xs text-gray-500">年間6,000時間の工数削減。AIワークフローで資料作成の属人化を解消。</p>
+        </div>
+      </div>
+      <!-- Case studies -->
+      <div class="space-y-6 max-w-4xl mx-auto">
+        <details class="group bg-surface rounded-2xl border border-gray-100 reveal">
+          <summary class="flex items-center justify-between cursor-pointer p-6 md:p-8">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 text-primary-600 flex items-center justify-center font-bold text-sm">01</span>
+              <h3 class="font-bold text-lg">顧客別売上達成状況の可視化と集計の自動化</h3>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 md:px-8 pb-6 md:pb-8 pt-0">
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-red-50 rounded-xl p-4"><p class="text-xs font-semibold text-red-600 mb-1">課題</p><p class="text-sm text-gray-600">案件ごとにシートが分散。毎日250分（月間80時間）の転記工数。</p></div>
+              <div class="bg-blue-50 rounded-xl p-4"><p class="text-xs font-semibold text-blue-600 mb-1">施策</p><p class="text-sm text-gray-600">GASによる自動集計＋条件付きアラート＋ダッシュボード構築。</p></div>
+              <div class="bg-green-50 rounded-xl p-4"><p class="text-xs font-semibold text-green-600 mb-1">成果</p><p class="text-sm text-gray-600">月間80時間の工数削減。リアルタイム数値把握で戦略的早期介入が可能に。</p></div>
+            </div>
+            <a href="cases/case-01.html" class="inline-flex items-center gap-1 text-primary-600 hover:text-primary-800 font-semibold text-sm mt-4 transition-colors">詳細を見る →</a>
+          </div>
+        </details>
+        <details class="group bg-surface rounded-2xl border border-gray-100 reveal reveal-delay-1">
+          <summary class="flex items-center justify-between cursor-pointer p-6 md:p-8">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 text-primary-600 flex items-center justify-center font-bold text-sm">02</span>
+              <h3 class="font-bold text-lg">議事録の自動化/資産化による機会〜危機検知</h3>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 md:px-8 pb-6 md:pb-8 pt-0">
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-red-50 rounded-xl p-4"><p class="text-xs font-semibold text-red-600 mb-1">課題</p><p class="text-sm text-gray-600">属人的な議事録運用。解約兆候・増額機会のリアルタイム把握が不可能。</p></div>
+              <div class="bg-blue-50 rounded-xl p-4"><p class="text-xs font-semibold text-blue-600 mb-1">施策</p><p class="text-sm text-gray-600">Google Meet×Gemini連携で構造化議事録を自動生成。リスク/機会のAI自動検知→Slack即時通知。</p></div>
+              <div class="bg-green-50 rounded-xl p-4"><p class="text-xs font-semibold text-green-600 mb-1">成果</p><p class="text-sm text-gray-600">事務作業の完全撤廃。ナレッジ一元管理。マネージャーの戦略的早期介入が可能に。</p></div>
+            </div>
+            <a href="cases/case-02.html" class="inline-flex items-center gap-1 text-primary-600 hover:text-primary-800 font-semibold text-sm mt-4 transition-colors">詳細を見る →</a>
+          </div>
+        </details>
+        <details class="group bg-surface rounded-2xl border border-gray-100 reveal reveal-delay-2">
+          <summary class="flex items-center justify-between cursor-pointer p-6 md:p-8">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 text-primary-600 flex items-center justify-center font-bold text-sm">03</span>
+              <h3 class="font-bold text-lg">資料作成の半自動化と「組織知」の資産化</h3>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 md:px-8 pb-6 md:pb-8 pt-0">
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-red-50 rounded-xl p-4"><p class="text-xs font-semibold text-red-600 mb-1">課題</p><p class="text-sm text-gray-600">月間2,000時間の資料作成工数。品質が担当者に依存し、ノウハウが属人化。</p></div>
+              <div class="bg-blue-50 rounded-xl p-4"><p class="text-xs font-semibold text-blue-600 mb-1">施策</p><p class="text-sm text-gray-600">GAS×Geminiで資料骨子を5分で自動生成。勝ちパターンのテンプレート化。</p></div>
+              <div class="bg-green-50 rounded-xl p-4"><p class="text-xs font-semibold text-green-600 mb-1">成果</p><p class="text-sm text-gray-600">月間500時間（3.1人分）の工数削減。全メンバーの提案レベルを均質に引き上げ。</p></div>
+            </div>
+            <a href="cases/case-03.html" class="inline-flex items-center gap-1 text-primary-600 hover:text-primary-800 font-semibold text-sm mt-4 transition-colors">詳細を見る →</a>
+          </div>
+        </details>
+      </div>
+      <div class="text-center mt-12 reveal">
+        <a href="demo/" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-4 rounded-full transition-colors">デモ・成果物をもっと見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 7: PRICING ========== -->
+  <section class="py-24 md:py-32 bg-surface" id="pricing">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-accent tracking-widest uppercase mb-3 reveal">Pricing</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">サービスプラン</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Free trial -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 card-hover reveal reveal-delay-1 flex flex-col">
+          <div class="mb-6">
+            <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">🟢 無料トライアル</span>
+          </div>
+          <p class="text-4xl font-extrabold mb-1">¥0</p>
+          <p class="text-gray-500 text-sm mb-6">まずはノーリスクでお試し</p>
+          <ul class="space-y-3 text-sm text-gray-600 flex-1">
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>業務ヒアリング（60-90分）</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>簡易課題洗い出し</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>AI活用余地の概算提示</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><strong>特定業務1つのAI化実装（上限10h）</strong></li>
+          </ul>
+          <a href="#cta" class="mt-8 block text-center bg-primary-600 hover:bg-primary-700 text-white font-bold py-3.5 rounded-xl transition-colors">無料トライアルに申し込む</a>
+        </div>
+        <!-- Main plan -->
+        <div class="pricing-featured rounded-2xl p-8 text-white card-hover reveal reveal-delay-2 flex flex-col relative z-10">
+          <div class="mb-6">
+            <span class="inline-flex items-center gap-1 bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">🔵 おすすめ</span>
+          </div>
+          <p class="text-4xl font-extrabold mb-1">¥300,000<span class="text-lg font-normal">〜</span></p>
+          <p class="text-blue-100/80 text-sm mb-6">本格プロジェクト支援 / 3ヶ月</p>
+          <ul class="space-y-3 text-sm text-blue-50/90 flex-1">
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>業務プロセスの可視化・分析</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>AI活用戦略・ロードマップ策定</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>複数業務のAI化・自動化実装</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>KPI設計・ダッシュボード構築</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>社内研修・運用マニュアル作成</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>週次定例（月2回）</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>月次ROIレポート提供</li>
+          </ul>
+          <a href="#cta" class="mt-8 block text-center bg-white text-primary-700 font-bold py-3.5 rounded-xl hover:bg-blue-50 transition-colors">お問い合わせ</a>
+        </div>
+        <!-- Advisory -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 card-hover reveal reveal-delay-3 flex flex-col">
+          <div class="mb-6">
+            <span class="inline-flex items-center gap-1 bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">🟣 継続顧問</span>
+          </div>
+          <p class="text-4xl font-extrabold mb-1">¥100,000<span class="text-lg font-normal">〜/月</span></p>
+          <p class="text-gray-500 text-sm mb-6">継続顧問契約</p>
+          <ul class="space-y-3 text-sm text-gray-600 flex-1">
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>月次定例ミーティング（2-4回）</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>継続的改善提案・実装支援</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>新規施策の企画・実装支援</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>チャットサポート（営業日対応）</li>
+            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>組織拡大に関する壁打ち</li>
+          </ul>
+          <a href="#cta" class="mt-8 block text-center bg-primary-600 hover:bg-primary-700 text-white font-bold py-3.5 rounded-xl transition-colors">お問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 8: STEPS ========== -->
+  <section class="py-24 md:py-32 bg-white" id="steps">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold text-accent tracking-widest uppercase mb-3 reveal">Process</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal reveal-delay-1">導入までのステップ</h2>
+      </div>
+      <div class="max-w-2xl mx-auto space-y-12">
+        <!-- Step 1 -->
+        <div class="relative flex gap-6 reveal">
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-orange-400 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="pb-8">
+            <h3 class="text-xl font-bold mb-2">無料トライアル</h3>
+            <p class="text-gray-500 leading-relaxed">無料課題ヒアリングと特定業務1つのAI化実装。改善の方向性と相性をご確認ください。</p>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="relative flex gap-6 reveal reveal-delay-1">
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">2</div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="pb-8">
+            <h3 class="text-xl font-bold mb-2">本提案・契約</h3>
+            <p class="text-gray-500 leading-relaxed">支援範囲と優先課題を確定。具体的なプロジェクト計画とKPIを合意します。</p>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="relative flex gap-6 reveal reveal-delay-2">
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">3</div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">導入・伴走支援</h3>
+            <p class="text-gray-500 leading-relaxed">施策の実行と定着支援。週次MTG等で進捗を管理し、社内への移転を進めます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 9: CTA ========== -->
+  <section class="py-24 md:py-32 hero-bg text-white relative" id="cta">
+    <div class="hero-grid"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 reveal">まずは無料トライアルで、<br>AIの効果を体感しませんか？</h2>
+      <p class="text-blue-100/70 text-lg leading-relaxed mb-8 reveal reveal-delay-1">
+        「AIを導入したいが、何から始めればいいか分からない」<br>
+        「社内にIT人材がいないが、業務効率化を進めたい」<br>
+        その第一歩を、<strong class="text-white">リスクゼロ</strong>でお試しいただけます。
+      </p>
+      <!-- Trial flow -->
+      <div class="grid sm:grid-cols-4 gap-4 mb-12 reveal reveal-delay-2">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <p class="text-2xl mb-2">🎧</p>
+          <p class="text-sm font-semibold">ヒアリング</p>
+          <p class="text-xs text-blue-200/60 mt-1">60-90分</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <p class="text-2xl mb-2">🔍</p>
+          <p class="text-sm font-semibold">課題特定</p>
+          <p class="text-xs text-blue-200/60 mt-1">AI活用ポイント提示</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <p class="text-2xl mb-2">⚡</p>
+          <p class="text-sm font-semibold">実装</p>
+          <p class="text-xs text-blue-200/60 mt-1">上限10時間</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <p class="text-2xl mb-2">📊</p>
+          <p class="text-sm font-semibold">効果検証</p>
+          <p class="text-xs text-blue-200/60 mt-1">Before/Afterレポート</p>
+        </div>
+      </div>
+      <!-- CTA buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal reveal-delay-3">
+        <a href="https://tally.so/r/QKdxx1" target="_blank" rel="noopener" class="cta-pulse inline-flex items-center justify-center gap-2 bg-accent hover:bg-orange-600 text-white font-bold text-lg px-10 py-4 rounded-full transition-colors w-full sm:w-auto">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          無料トライアルに申し込む
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-primary-900 border-t border-white/5 text-blue-100/40 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <p>&copy; 2026 AI業務改革パートナー</p>
+      <nav class="flex gap-6">
+        <a href="#about" class="hover:text-white transition-colors">自己紹介</a>
+        <a href="#service" class="hover:text-white transition-colors">サービス</a>
+        <a href="#evidence" class="hover:text-white transition-colors">実績</a>
+        <a href="#pricing" class="hover:text-white transition-colors">料金</a>
+        <a href="#cta" class="hover:text-white transition-colors">お問い合わせ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header background on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        header.style.backgroundColor = 'rgba(15,29,53,0.95)';
+        header.style.backdropFilter = 'blur(12px)';
+        header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+      } else {
+        header.style.backgroundColor = 'transparent';
+        header.style.backdropFilter = 'none';
+        header.style.boxShadow = 'none';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
