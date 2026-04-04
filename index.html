@@ -52,16 +52,15 @@
             overflow-x: hidden;
         }
 
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         .section { padding: 96px 0; }
         .section-alt { background: var(--bg-light); }
 
         .section-label {
-            font-family: var(--font-en);
-            font-size: 0.78rem;
+            font-family: var(--font-ja);
+            font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            letter-spacing: 0.08em;
             color: var(--orange);
             text-align: center;
             display: block;
@@ -79,7 +78,7 @@
             text-align: center;
             font-size: 0.95rem;
             color: var(--text-sub);
-            max-width: 600px;
+            max-width: 720px;
             margin: 0 auto 56px;
             line-height: 1.8;
         }
@@ -93,7 +92,7 @@
         }
         .header-inner {
             display: flex; align-items: center; justify-content: space-between;
-            height: 64px; max-width: 1080px; margin: 0 auto; padding: 0 24px;
+            height: 64px; max-width: 1280px; margin: 0 auto; padding: 0 40px;
         }
         .logo { font-size: 1rem; font-weight: 800; color: var(--text); text-decoration: none; }
         .logo span { color: var(--accent); }
@@ -130,7 +129,7 @@
             padding-top: 64px; background: var(--bg-light);
             position: relative;
         }
-        .hero-content { max-width: 680px; }
+        .hero-content { max-width: 800px; }
         .hero-tag {
             display: inline-block; padding: 5px 16px;
             background: var(--accent-bg-strong); border-radius: 100px;
@@ -175,7 +174,7 @@
         @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
         /* ===== CHALLENGES ===== */
-        .challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .challenge-card {
             padding: 32px 24px; background: var(--bg-card); border: 1px solid var(--border-light);
             border-radius: var(--radius-lg); transition: var(--transition);
@@ -251,7 +250,7 @@
         .mid-cta p { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 20px; }
 
         /* ===== SERVICES ===== */
-        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .svc-card {
             padding: 28px 24px; background: var(--bg-card); border: 1px solid var(--border-light);
             border-radius: var(--radius-lg); transition: var(--transition); position: relative;
@@ -282,7 +281,7 @@
         .rh-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; line-height: 1.6; }
 
         /* Accordion cases (matches screenshot) */
-        .case-accordion { max-width: 800px; margin: 0 auto; }
+        .case-accordion { max-width: 960px; margin: 0 auto; }
         .case-item {
             margin-bottom: 16px; background: var(--bg-light); border: 1px solid var(--border-light);
             border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition);
@@ -336,7 +335,7 @@
         .pci-val-new { color: var(--accent); }
         .pci-arrow { font-size: 1.5rem; color: var(--text-muted); }
 
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .price-card {
             padding: 32px 24px; background: var(--bg-card); border: 1px solid var(--border-light);
             border-radius: var(--radius-lg); display: flex; flex-direction: column;
@@ -361,7 +360,7 @@
         @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
 
         /* ===== PROCESS (matches screenshot: timeline style) ===== */
-        .process-timeline { max-width: 640px; margin: 0 auto; position: relative; }
+        .process-timeline { max-width: 760px; margin: 0 auto; position: relative; }
         .process-timeline::before {
             content: ''; position: absolute; left: 23px; top: 48px; bottom: 48px;
             width: 3px; background: linear-gradient(to bottom, var(--accent), var(--accent-bg));
@@ -381,7 +380,7 @@
         .proc-content p { font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; }
 
         /* ===== FAQ ===== */
-        .faq-list { max-width: 720px; margin: 0 auto; }
+        .faq-list { max-width: 860px; margin: 0 auto; }
         .faq-item { border-bottom: 1px solid var(--border-light); }
         .faq-q {
             width: 100%; background: none; border: none; color: var(--text); padding: 22px 0;
@@ -468,7 +467,7 @@
 <!-- CHALLENGES -->
 <section class="section section-alt">
     <div class="container">
-        <span class="section-label fi">Common Challenges</span>
+        <span class="section-label fi">— 課題 —</span>
         <h2 class="section-title fi">こんな課題はありませんか？</h2>
         <p class="section-subtitle fi">AI導入や業務効率化PJでは、3つの「ない」が発生しがちです</p>
         <div class="challenge-grid">
@@ -500,7 +499,7 @@
 <!-- ROOT CAUSE -->
 <section class="section">
     <div class="container">
-        <span class="section-label fi">Root Cause</span>
+        <span class="section-label fi">— 原因 —</span>
         <h2 class="section-title fi">なぜ社内だけでは解決できないのか</h2>
         <p class="section-subtitle fi"></p>
         <div class="rc-grid fi">
@@ -521,7 +520,7 @@
 <!-- WHY US -->
 <section class="section section-alt" id="about">
     <div class="container">
-        <span class="section-label fi">Why Us</span>
+        <span class="section-label fi">— 選ばれる理由 —</span>
         <h2 class="section-title fi">コンサルでも、SIerでもない。<br>「事業数値」を動かす伴走型パートナー。</h2>
         <p class="section-subtitle fi">45名組織のマネジメント経験から、どこに手を打てば利益や組織が変わるかを熟知。<br>戦略だけで終わらず、実装・運用定着まで自ら手を動かして完遂します。</p>
         <div class="why-grid">
@@ -535,7 +534,7 @@
 <!-- COMPARISON -->
 <section class="section">
     <div class="container">
-        <span class="section-label fi">Comparison</span>
+        <span class="section-label fi">— 比較 —</span>
         <h2 class="section-title fi">既存の選択肢と比べてみてください</h2>
         <p class="section-subtitle fi"></p>
         <div class="comparison-wrap fi">
@@ -560,7 +559,7 @@
 <!-- SERVICES -->
 <section class="section section-alt" id="service">
     <div class="container">
-        <span class="section-label fi">Services</span>
+        <span class="section-label fi">— サービス —</span>
         <h2 class="section-title fi">ご支援可能内容</h2>
         <p class="section-subtitle fi"></p>
         <div class="svc-grid">
@@ -577,7 +576,7 @@
 <!-- RESULTS -->
 <section class="section" id="evidence">
     <div class="container">
-        <span class="section-label fi">Results</span>
+        <span class="section-label fi">— 導入実績 —</span>
         <h2 class="section-title fi">導入実績：AIによる業務変革の効果</h2>
         <p class="section-subtitle fi"></p>
 
@@ -646,7 +645,7 @@
 <!-- PRICING -->
 <section class="section section-alt" id="pricing">
     <div class="container">
-        <span class="section-label fi">Pricing</span>
+        <span class="section-label fi">— 料金 —</span>
         <h2 class="section-title fi">正社員AI担当の1/3以下のコストで、<br>戦略から定着まで</h2>
         <p class="section-subtitle fi"></p>
 
@@ -709,7 +708,7 @@
 <!-- PROCESS -->
 <section class="section">
     <div class="container">
-        <span class="section-label fi">Process</span>
+        <span class="section-label fi">— 導入ステップ —</span>
         <h2 class="section-title fi">導入までのステップ</h2>
         <p class="section-subtitle fi"></p>
         <div class="process-timeline fi">
@@ -732,7 +731,7 @@
 <!-- FAQ -->
 <section class="section section-alt">
     <div class="container">
-        <span class="section-label fi">FAQ</span>
+        <span class="section-label fi">— よくある質問 —</span>
         <h2 class="section-title fi">よくある質問</h2>
         <p class="section-subtitle fi"></p>
         <div class="faq-list fi">
